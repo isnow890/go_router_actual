@@ -21,7 +21,7 @@ final routerProvider = Provider<GoRouter>(
     final authStateProvider = AuthNotifier(ref: ref);
 
     return GoRouter(
-      initialLocation: '/',
+      initialLocation: '/login',
       //에러 처리
       errorBuilder: (context, state) {
         return ErrorScreen(error: state.error.toString());
