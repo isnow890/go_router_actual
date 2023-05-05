@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_acutal/screen/1_screen.dart';
+import 'package:go_router_acutal/screen/2_screen.dart';
+import 'package:go_router_acutal/screen/3_screen.dart';
 import 'package:go_router_acutal/screen/home_screen.dart';
 
 void main() => runApp(_App());
@@ -11,14 +13,27 @@ final GoRouter _router = GoRouter(
     GoRoute(
       //처음 시작되는 화면
       path: '/',
-      builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
-      },
+      builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
       routes: <RouteBase>[
         GoRoute(
           path: 'one',
-          builder: (BuildContext context, GoRouterState state) {return const OneScreen();
-          },
+          builder: (BuildContext context, GoRouterState state) => const OneScreen(),
+          routes: <RouteBase> [
+            GoRoute(
+              path: 'two',
+              builder: (BuildContext context, GoRouterState state) => const TwoScreen(),
+              routes: <RouteBase> [
+
+                //route -> /one/two/three
+                GoRoute(
+                  path: 'three',
+                  //path가 너무 길어지면 이름을 지어줄 수 있음.
+                  name:ThreeScreen.routeName,
+                  builder: (BuildContext context, GoRouterState state) => const ThreeScreen(),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     ),
@@ -33,7 +48,6 @@ class _App extends StatelessWidget {
 // Go Router 1
     return MaterialApp.router(
       routerConfig: _router,
-
     );
   }
 }
