@@ -34,6 +34,15 @@ class HomeScreen extends StatelessWidget {
             child: Text('Screen Three (GO)'),
           ),
 
+          ElevatedButton(
+            onPressed: () {
+              // context.go('/one/two/three');
+              //main.dart에 이름 지어준 것을 사용.
+              context.go('/error');
+            },
+            child: Text('Error Screen (GO)'),
+          ),
+
         ],
       ),
     );
